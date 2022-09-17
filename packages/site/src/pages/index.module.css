@@ -1,0 +1,74 @@
+.heroBanner {
+  padding: 4rem 0 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: none;
+}
+
+.container {
+  --bg: url(https://i1.haishan.me/file/pelican/00/ZwhXba4c5ladhwcKD76hw-100.png);
+
+  /*  url x y / width no-repeat */
+  /* prettier-ignore */
+  background:
+    var(--bg) 19% 4% / 40px no-repeat,
+    var(--bg) 41% 14% / 40px no-repeat,
+    var(--bg) 70% 5% / 50px no-repeat,
+    var(--bg) 0% 50% / 40px no-repeat,
+    var(--bg) 99% 60% / 30px no-repeat,
+    var(--bg) 60% 40% / 50px no-repeat,
+    var(--bg) 80% 80% / 45px no-repeat;
+}
+
+@media screen and (max-width: 996px) {
+  .container {
+    padding: 0;
+    /* prettier-ignore */
+    background:
+      var(--bg) 10% 4% / 25px no-repeat,
+      var(--bg) 41% 14% / 25px no-repeat,
+      var(--bg) 70% 5% / 35px no-repeat,
+      var(--bg) 0% 50% / 25px no-repeat,
+      var(--bg) 99% 60% / 18px no-repeat,
+      var(--bg) 60% 40% / 35px no-repeat,
+      var(--bg) 80% 80% / 20px no-repeat;
+  }
+}
+
+[data-theme="dark"] [data-img="light"] {
+  display: none;
+}
+
+[data-theme="light"] [data-img="dark"] {
+  display: none;
+}
+
+.BigShot img {
+  max-width: 100%;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 15px;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.cta.cta {
+  font-weight: normal;
+  border-radius: 100px;
+  padding: 5px 15px;
+}

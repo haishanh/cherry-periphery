@@ -1,0 +1,17 @@
+{
+  "name": "cherry-periphery",
+  "scripts": {
+    "cherry": "git submodule update --remote packages/app && pnpm --filter cherry package"
+  },
+  "version": "0.0.0",
+  "private": true,
+  "author": "Haishan <haishanhan@gmail.com>",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=16.14.0",
+    "pnpm": ">=7.8.0"
+  },
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,51 @@
+{
+  "name": "cherry-ext",
+  "version": "0.0.3",
+  "type": "module",
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true
+  },
+  "scripts": {
+    "run:firefox:mv3": "web-ext run --source-dir=dist --firefox-preview",
+    "run:firefox": "web-ext run --source-dir=dist --start-url google.com",
+    "run:chrome": "web-ext run --source-dir=dist -t chromium --browser-console",
+    "dev:firefox": "MV=2 DEBUG=1 vite build --watch",
+    "dev:chrome": "MV=3 DEBUG=1 vite build --watch",
+    "build:chrome": "MV=3 vite build",
+    "build:firefox": "MV=2 vite build",
+    "build:debug": "DEBUG=1 vite build",
+    "start": "APP_ENV=dev vite dev",
+    "serve": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "lint": "prettier --ignore-path .gitignore --check src scripts && eslint --cache --ignore-path .gitignore src",
+    "lint:fix": "eslint --cache --fix  src",
+    "prettier:fix": "prettier --plugin-search-dir=. --write src",
+    "fix": "pnpm lint:fix && pnpm prettier:fix"
+  },
+  "devDependencies": {
+    "@hsjs/svelte-icons": "0.0.1-rc.4",
+    "@sveltejs/vite-plugin-svelte": "^1.0.8",
+    "@tsconfig/svelte": "^3.0.0",
+    "@types/chrome": "0.0.197",
+    "@typescript-eslint/eslint-plugin": "5.38.1",
+    "@typescript-eslint/parser": "5.38.1",
+    "cherry": "workspace:../app/package",
+    "eslint": "8.24.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-simple-import-sort": "8.0.0",
+    "eslint-plugin-svelte3": "4.0.0",
+    "prettier": "2.7.1",
+    "prettier-plugin-svelte": "2.7.1",
+    "sass": "1.55.0",
+    "svelte": "^3.50.1",
+    "svelte-check": "^2.9.1",
+    "svelte-preprocess": "^4.7.2",
+    "tslib": "^2.2.0",
+    "typescript": "^4.8.4",
+    "undici": "5.10.0",
+    "vite": "^3.1.4",
+    "vite-plugin-static-copy": "0.9.0"
+  }
+}

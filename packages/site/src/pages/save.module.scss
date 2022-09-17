@@ -1,0 +1,35 @@
+.main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+[data-theme="dark"] [data-img="light"] {
+  display: none;
+}
+
+[data-theme="light"] [data-img="dark"] {
+  display: none;
+}
+
+.ext {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.extLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: inherit;
+  padding: 5px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: normal;
+  &:hover {
+    text-decoration: none;
+  }
+}

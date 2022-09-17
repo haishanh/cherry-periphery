@@ -1,0 +1,4 @@
+[submodule "packages/app"]
+	path = packages/app
+	url = https://haishanh@github.com/haishanh/cherry-priv.git
+  branch = p3

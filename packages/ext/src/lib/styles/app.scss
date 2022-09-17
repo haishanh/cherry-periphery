@@ -1,0 +1,67 @@
+@mixin dark {
+  --bg-main: #121212;
+  --bg-card: #1d1d1f;
+  --bg-card-hover: hsl(0deg 0% 28%);
+  --bg-btn: hsl(223deg 7% 19%);
+  --bo-default: #30363d;
+  --color-btn-bo: hsl(223deg 7% 19%);
+  --color-text: #ddd;
+  --color-text2: hsl(0deg 0% 40%);
+  --color-text3: hsl(0deg 0% 60%);
+  // input
+  --color-input-bg: #2d2d30;
+  --color-input-bo: #555;
+  --color-input-bo-hover: #aaa;
+}
+@mixin light {
+  --bg-main: #f3f3f3;
+  --bg-card: #fefefe;
+  --bg-card-hover: hsl(0deg 0% 85%);
+  --bg-btn: hsl(0deg 0% 100%);
+  --bo-default: hsl(210deg 14% 83%);
+  --color-btn-bo: hsl(210deg 14% 83%);
+  --color-text: #222;
+  --color-text2: hsl(0deg 0% 64%);
+  --color-text3: hsl(0deg 0% 32%);
+  // input
+  --color-input-bg: #f0f0f0;
+  --color-input-bo: #dedede;
+  --color-input-bo-hover: #aaa;
+}
+
+:root {
+  @media (prefers-color-scheme: dark) {
+    @include dark;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    @include light;
+    color-scheme: light;
+  }
+  --color-focus-blue: #387cec;
+  --accent: hsl(94deg 99% 33%);
+}
+
+:root {
+  font-family: system-ui, sans-serif;
+  // font-family: Inter, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+
+  background-color: var(--bg-main);
+  color: var(--color-text);
+}
+
+body {
+  margin: 0;
+  font-size: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
