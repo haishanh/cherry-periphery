@@ -97,7 +97,11 @@ export async function getServerConfig() {
     return null;
   } else {
     const servers = options.servers;
-    return servers[options.activeServerIdx];
+    const activeServerKey = options.activeServerKey;
+    for (const s of servers) {
+      if (s.key === activeServerKey) return s;
+    }
+    return servers[0]
   }
 }
 

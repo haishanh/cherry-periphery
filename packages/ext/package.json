@@ -15,6 +15,7 @@
     "build:chrome": "MV=3 vite build",
     "build:firefox": "MV=2 vite build",
     "build:debug": "DEBUG=1 vite build",
+    "zip": "pnpm web-ext build -s dist",
     "start": "APP_ENV=dev vite dev",
     "serve": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",

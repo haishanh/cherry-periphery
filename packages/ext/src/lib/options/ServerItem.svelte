@@ -6,18 +6,15 @@
   import Button from 'cherry/components/base/Button.svelte';
   import VisuallyHidden from 'cherry/components/base/VisuallyHidden.svelte';
 
-  import { extensionOptions, serverEditModal } from './options.store';
+  import { deleteServerItem, serverEditModal } from './options.store';
   import type { ServerItemConfig } from './type';
 
   function handleClickEdit() {
     $serverEditModal.open({ item: server });
   }
+
   function handleClickDelete() {
-    extensionOptions.update((o) => {
-      const servers = o.servers.filter((s) => s.key !== server.key);
-      o.servers = servers;
-      return o;
-    });
+    deleteServerItem(server.key);
   }
 </script>
 

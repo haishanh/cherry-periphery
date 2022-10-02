@@ -2,6 +2,7 @@ import { writable } from 'svelte/store';
 
 import type ServerEditModal from '$lib/options/ServerEditModal.svelte';
 import { ext } from '$lib/shared/browser';
+import { createLogger, makeId } from '$lib/shared/common.util';
 
 import type { ServerItemConfig } from './type';
 
@@ -9,20 +10,18 @@ export const serverEditModal = writable<ServerEditModal>(null);
 
 let extensionOptionsLoaded = false;
 
+const logger = createLogger('options');
+
 export const extensionOptions = writable<{
   servers: ServerItemConfig[];
-  activeServerIdx: number;
-}>({ servers: [], activeServerIdx: 0 });
+  activeServerKey: string;
+}>({ servers: [], activeServerKey: '' });
 
 extensionOptions.subscribe(async (value) => {
   if (!import.meta.env.DEV) {
-    console.log('extensionOptions subscribe', value);
-    console.log(JSON.stringify({ value, extensionOptionsLoaded }));
     if (!extensionOptionsLoaded) return;
     if (value) {
-      console.log('set storage');
       await ext.storage.local.set({ options: value });
-      console.log('Value is set to ' + JSON.stringify(value));
     }
   }
 });
@@ -32,12 +31,11 @@ extensionOptions.subscribe(async (value) => {
 export async function loadExtensionOptions() {
   if (!import.meta.env.DEV) {
     const data = await ext.storage.local.get(['options']);
-    console.log('loadExtensionOptions loaded', JSON.stringify(data));
     const options = data.options;
-    console.log('loadExtensionOptions', JSON.stringify(options));
+    logger.info('loadExtensionOptions %s', options);
     extensionOptionsLoaded = true;
     if (!options || !options.servers || options.servers.length === 0) {
-      extensionOptions.set({ servers: [], activeServerIdx: 0 });
+      extensionOptions.set({ servers: [], activeServerKey: '' });
     } else {
       extensionOptions.set(options);
     }
@@ -46,14 +44,14 @@ export async function loadExtensionOptions() {
       servers: [
         {
           apiBase: 'http://localhost:5173',
-          key: '0',
+          key: '01',
           user: {
             username: 'hello@cherry.haishan.me',
           },
         },
         { apiBase: `https://${makeLongWord(80)}.example.com`, key: '1' },
       ],
-      activeServerIdx: 0,
+      activeServerKey: '01',
     });
   }
 }
@@ -66,9 +64,32 @@ function makeLongWord(n: number) {
   return c + 'ng';
 }
 
-export function selectServerItem(idx: number) {
-  extensionOptions.update((n) => {
-    n.activeServerIdx = idx;
-    return n;
+export function selectServerItem(key: string) {
+  extensionOptions.update((o) => {
+    o.activeServerKey = key;
+    return o;
+  });
+}
+
+export function deleteServerItem(key: string) {
+  extensionOptions.update((o) => {
+    o.servers = o.servers.filter((s) => s.key !== key);
+    return o;
+  });
+}
+
+export function updateOrAddServerItem(value: ServerItemConfig) {
+  extensionOptions.update((o) => {
+    const currentActiveServerKey = o.activeServerKey;
+    const server = o.servers.find((s) => s.key === value.key);
+    if (!server) {
+      const key = makeId();
+      o.servers.push({ ...value, key });
+      if (!currentActiveServerKey) o.activeServerKey = key;
+    } else {
+      for (const prop in value) server[prop] = value[prop];
+      if (!currentActiveServerKey) o.activeServerKey = value.key;
+    }
+    return o;
   });
 }

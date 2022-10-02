@@ -1,20 +1,22 @@
 <script lang="ts">
   // XXX change this list into a radio group for better a11y
-  export let servers = [];
-  export let activeServerIdx = 0;
 
   import CheckCircle from '@hsjs/svelte-icons/feather/CheckCircle.svelte';
   import Circle from '@hsjs/svelte-icons/feather/Circle.svelte';
 
+  import { extensionOptions } from '$lib/options/options.store';
   import ServerItem from '$lib/options/ServerItem.svelte';
 
   import { selectServerItem } from './options.store';
 </script>
 
 <ul class="server-list">
-  {#each servers as server, i (server.apiBase)}
-    <li class:active={i === activeServerIdx} on:click={() => selectServerItem(i)}>
-      {#if i === activeServerIdx}
+  {#each $extensionOptions.servers as server (server.key)}
+    <li
+      class:active={server.key === $extensionOptions.activeServerKey}
+      on:click={() => selectServerItem(server.key)}
+    >
+      {#if server.key === $extensionOptions.activeServerKey}
         <div class="tick"><CheckCircle size={18} /></div>
       {:else}
         <div class="tick"><Circle size={18} /></div>

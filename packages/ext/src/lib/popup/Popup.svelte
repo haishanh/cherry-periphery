@@ -43,16 +43,6 @@
     ext.runtime.sendMessage({ type, payload });
   }
 
-  // @ts-ignore
-  async function unused__launchWebAuthFlow(apiBase: string) {
-    const redirect_uri = ext.identity.getRedirectURL();
-    const u = new URLSearchParams({ client_id: 'cherry.ext', redirect_uri, response_type: 'code' });
-    const url = `${apiBase}/authorize?${u}`;
-    // @ts-ignore ts is complain this is not promise
-    const res = await ext.identity.launchWebAuthFlow({ url, interactive: true });
-    logger.info('launchWebAuthFlow res %s', res);
-  }
-
   function addListener() {
     ext.runtime.onMessage.addListener(async (message, __callback) => {
       const type = message.type;

@@ -13,10 +13,7 @@
     </div>
   {:else}
     <div class="server-list">
-      <ServerList
-        servers={$extensionOptions.servers}
-        activeServerIdx={$extensionOptions.activeServerIdx}
-      />
+      <ServerList />
     </div>
     <AddServerButton />
   {/if}

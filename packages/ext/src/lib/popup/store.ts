@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 import type { ServerItemConfig } from '$lib/options/type';
-import { ext } from '$lib/shared/browser';
+import { getServerConfig } from '$lib/shared/common.util';
 
 export const config = writable<ServerItemConfig>(null);
 
@@ -9,19 +9,16 @@ async function loadConfig() {
   let c: ServerItemConfig;
   if (!import.meta.env.DEV) {
     try {
-      const data = await ext.storage.local.get(['options']);
-      const options = data.options;
-      if (!options || !options.servers || options.servers.length === 0) {
-        c = null;
-      } else {
-        const servers = options.servers;
-        c = servers[options.activeServerIdx];
-      }
+      c = await getServerConfig();
     } catch (e) {
       c = null;
     }
   } else {
-    c = { apiBase: 'https://example.codddddddddddddddddddddddddddddddddm' };
+    c = {
+      apiBase: 'https://example.codddddddddddddddddddddddddddddddddm',
+      pat: 'test',
+      key: 'test',
+    };
   }
 
   config.set(c);

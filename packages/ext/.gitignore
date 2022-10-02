@@ -24,3 +24,5 @@ dist
 coverage/
 
 images/cherry*.png
+
+web-ext-artifacts/

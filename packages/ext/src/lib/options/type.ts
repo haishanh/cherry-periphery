@@ -10,5 +10,5 @@ export type ServerItemConfig = {
 
 export type Options = {
   servers: ServerItemConfig[];
-  activeServerIdx: number;
+  activeServerKey: string;
 };

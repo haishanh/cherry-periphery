@@ -10,9 +10,9 @@
   import { createEventDispatcher } from 'svelte';
 
   import { fetchUserFromServer } from '$lib/shared/backend.util';
-  import { createLogger, makeId } from '$lib/shared/common.util';
+  import { createLogger } from '$lib/shared/common.util';
 
-  import { extensionOptions } from './options.store';
+  import { updateOrAddServerItem } from './options.store';
   import type { ServerItemConfig } from './type';
 
   export let item: ServerItemConfig;
@@ -42,7 +42,6 @@
   let isLoading = false;
 
   async function onSubmit() {
-    logger.info('onSubmit');
     const result = validate(rule, { apiBase: item.apiBase, pat: item.pat });
     if (result.error) {
       // @ts-ignore
@@ -57,7 +56,7 @@
     // we don't support deploy Cherry under sub-path of a domain
     // keep "origin" here only
     apiBase = u.origin;
-    const value = { ...result.value, apiBase } as ServerItemConfig;
+    const value = { ...result.value, apiBase, key: item.key } as ServerItemConfig;
     try {
       isLoading = true;
       // we can do cross site request on "options" page
@@ -70,18 +69,8 @@
     } finally {
       isLoading = false;
     }
-
-    extensionOptions.update((o) => {
-      const server = o.servers.find((s) => s.key === item.key);
-      if (!server) {
-        const key = makeId();
-        o.servers.push({ ...value, key });
-      } else {
-        for (let key in value) server[key] = value[key];
-      }
-      return o;
-    });
-
+    logger.info('submit %s', value);
+    updateOrAddServerItem(value);
     dispatch(EVENT.updatecompleted);
   }
 
