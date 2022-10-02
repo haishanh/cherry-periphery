@@ -1,6 +1,6 @@
 {
   "name": "cherry-ext",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "prettier": {
     "printWidth": 100,
@@ -12,8 +12,8 @@
     "run:chrome": "web-ext run --source-dir=dist -t chromium --browser-console",
     "dev:firefox": "MV=2 DEBUG=1 vite build --watch",
     "dev:chrome": "MV=3 DEBUG=1 vite build --watch",
-    "build:chrome": "MV=3 vite build",
-    "build:firefox": "MV=2 vite build",
+    "build:chrome": "rm -r dist; MV=3 vite build",
+    "build:firefox": "rm -r dist;MV=2 vite build",
     "build:debug": "DEBUG=1 vite build",
     "zip": "pnpm web-ext build -s dist",
     "start": "APP_ENV=dev vite dev",

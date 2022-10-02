@@ -25,4 +25,5 @@ coverage/
 
 images/cherry*.png
 
+*.zip
 web-ext-artifacts/
