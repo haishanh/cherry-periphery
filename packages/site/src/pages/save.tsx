@@ -1,11 +1,13 @@
-import * as React from "react";
-import Layout from "@theme/Layout";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import s0 from "./save.module.scss";
-import cx from "clsx";
+import * as React from 'react';
+import Layout from '@theme/Layout';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import s0 from './save.module.scss';
+import cx from 'clsx';
 
-import ChromeLogo from "@browser-logos/chrome/chrome.svg";
-import firefoxLogoUrl from "@browser-logos/firefox/firefox.svg";
+import ChromeLogo from '@browser-logos/chrome/chrome.svg';
+// we are suppose to use the svg one but the svgo breaks the display of the svg
+// svgo is enabled in the svgr/webpack included in docusaurus
+import FirefoxLogoPng from '@browser-logos/firefox/firefox_128x128.png';
 
 export default function Save() {
   const { siteConfig } = useDocusaurusContext();
@@ -14,16 +16,23 @@ export default function Save() {
       <main className={s0.main}>
         <h2>Browser Extensions</h2>
         <div className={s0.ext}>
-          <ExtensionScreenshot />
-          <div>
+          <div className={s0.extLinkGroup}>
             <a
               href="https://chrome.google.com/webstore/detail/cherry-chrome-extension/klpbmdnmnbcabnaammeinopljnmdnili"
-              className={cx("button button--secondary", s0.extLink)}
+              className={cx('button button--secondary', s0.extLink)}
             >
               <ChromeLogo width={36} />
               <span>Chrome</span>
             </a>
+            <a
+              href="https://addons.mozilla.org/en-US/firefox/addon/cherry-browser-extension/"
+              className={cx('button button--secondary', s0.extLink)}
+            >
+              <figure className={s0.icon} style={{ backgroundImage: `url(${FirefoxLogoPng})` }} />
+              <span>Firefox</span>
+            </a>
           </div>
+          <ExtensionScreenshot />
         </div>
       </main>
     </Layout>
@@ -52,7 +61,7 @@ function ExtensionScreenshot(props: { width?: number }) {
           src="https://i1.haishan.me/file/pelican/00/tX_GlPCLsJvFLNM5cThAM-300.png"
           width="1436"
           height="974"
-          style={{ height: "auto", width }}
+          style={{ height: 'auto', width }}
         />
       </picture>
 
@@ -74,7 +83,7 @@ function ExtensionScreenshot(props: { width?: number }) {
           src="https://i1.haishan.me/file/pelican/00/nQeuBAoOi5G-bbB3DdGQ7-300.png"
           width="1436"
           height="974"
-          style={{ height: "auto", width }}
+          style={{ height: 'auto', width }}
         />
       </picture>
     </div>

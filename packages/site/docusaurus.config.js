@@ -89,6 +89,10 @@ const config = {
                 label: 'Chrome',
                 href: 'https://chrome.google.com/webstore/detail/cherry-chrome-extension/klpbmdnmnbcabnaammeinopljnmdnili',
               },
+              {
+                label: 'Firefox',
+                href: 'https://addons.mozilla.org/en-US/firefox/addon/cherry-browser-extension/',
+              },
             ],
           },
         ],
