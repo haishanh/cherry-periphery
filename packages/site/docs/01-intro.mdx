@@ -1,0 +1,36 @@
+---
+sidebar_position: 1
+---
+
+
+export const BigShot = () => {
+  // not using for now, as this will mis-leading user this is a mobile app
+  const style = { height: 'auto', float: 'right', maxWidth: 450 };
+  return (
+    <div className="test">
+      <picture>
+        <source type="image/avif" srcSet="https://i1.haishan.me/file/pelican/00/1SpxN68mhJsWOuVkQyxQK-1872.avif 1872w" sizes="(min-width: 30em) 50vw, 100vw" />
+        <source type="image/png" srcSet="https://i1.haishan.me/file/pelican/00/1SpxN68mhJsWOuVkQyxQK-1872.png 1872w" sizes="(min-width: 30em) 50vw, 100vw" />
+        <img data-img="light" loading="lazy" decoding="async" src="https://i1.haishan.me/file/pelican/00/1SpxN68mhJsWOuVkQyxQK-300.png" width="1872" height="1872" style={style} />
+      </picture>
+      <picture>
+        <source type="image/avif" srcSet="https://i1.haishan.me/file/pelican/00/CCAqEcE6mNqcb6fJh7koz-1872.avif 1872w" sizes="(min-width: 30em) 50vw, 100vw" />
+        <source type="image/png" srcSet="https://i1.haishan.me/file/pelican/00/CCAqEcE6mNqcb6fJh7koz-1872.png 1872w" sizes="(min-width: 30em) 50vw, 100vw" />
+        <img data-img="dark" loading="lazy" decoding="async" src="https://i1.haishan.me/file/pelican/00/CCAqEcE6mNqcb6fJh7koz-300.png" width="1872" height="1872" style={style} />
+      </picture>
+    </div>
+  );
+}
+
+**Cherry** is a bookmark service.
+
+- It's **open source**. the code of Cherry service, the browser extension and also this website are all available on GitHub.
+- It's **self-hostable**. Your data in in your own hands. It's also easy to deploy, a Docker image is provided. It's using SQLite, management and backup is a breeze.
+- It has a **simple UI**. But you got all the features you want for a bookmark service. Tags, groups, full text search and browser extensions.
+
+In case Cherry is not your thing, you may choose these alternatives:
+
+- [linkding](https://github.com/sissbruecker/linkding)
+- [wallabag](https://github.com/wallabag/wallabag)
+
+

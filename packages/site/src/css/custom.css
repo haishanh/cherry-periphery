@@ -87,3 +87,11 @@
 .navbar {
   background: none;
 }
+
+[data-theme="dark"] [data-img="light"] {
+  display: none;
+}
+
+[data-theme="light"] [data-img="dark"] {
+  display: none;
+}
