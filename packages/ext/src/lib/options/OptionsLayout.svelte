@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
 
   import { loadExtensionOptions, serverEditModal } from './options.store';
+    import OptionsAbout from './OptionsAbout.svelte';
   import ServerEditModal from './ServerEditModal.svelte';
 
   let sem: ServerEditModal;
@@ -17,6 +18,7 @@
   <div><Cherry /></div>
   <slot />
   <ServerEditModal bind:this={sem} />
+  <OptionsAbout />
 </main>
 
 <style>

@@ -1,3 +1,4 @@
+import { spawn } from 'node:child_process';
 import { resolve } from 'node:path';
 
 import { svelte } from '@sveltejs/vite-plugin-svelte';
@@ -6,57 +7,62 @@ import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 
-import pkg from './package.json'
+import pkg from './package.json';
 
 const ctxdir = dirname(fileURLToPath(import.meta.url));
 const minify = process.env.DEBUG !== '1' && process.env.APP_ENV !== 'dev';
 const mv = process.env.MV || '3';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  define: {
-    __APP_ENV__: JSON.stringify(process.env.APP_ENV || ''),
-  },
-  plugins: [
-    svelte(),
-    manifest(),
-    viteStaticCopy({
-      targets: [
-        { src: 'images', dest: './' },
-        { src: 'src/lib/cnt/retrieveMeta.js', dest: './' },
-      ],
-    }),
-  ],
-  resolve: {
-    alias: { $lib: resolve(ctxdir, 'src/lib') },
-  },
-  build: {
-    minify,
-    target: 'esnext',
-    assetsInlineLimit: 100000000,
-    chunkSizeWarningLimit: 100000000,
-    cssCodeSplit: false,
-
-    polyfillModulePreload: false,
-    modulePreload: {
-      polyfill: false,
+export default defineConfig(async () => {
+  const hash = await gitHash();
+  process.env.VITE_VERSION = hash;
+  return {
+    define: {
+      __APP_ENV__: JSON.stringify(process.env.APP_ENV || ''),
     },
+    plugins: [
+      svelte(),
+      manifest(),
+      viteStaticCopy({
+        targets: [
+          { src: 'images', dest: './' },
+          { src: 'src/lib/cnt/retrieveMeta.js', dest: './' },
+        ],
+      }),
+    ],
+    resolve: {
+      alias: { $lib: resolve(ctxdir, 'src/lib') },
+    },
+    build: {
+      minify,
+      target: 'esnext',
+      assetsInlineLimit: 100000000,
+      chunkSizeWarningLimit: 100000000,
+      cssCodeSplit: false,
 
-    rollupOptions: {
-      input: {
-        options: resolve(ctxdir, 'options.html'),
-        popup: resolve(ctxdir, 'popup.html'),
-        // background: resolve(ctxdir, 'background.html'),
-        ...(process.env.APP_ENV === 'dev' ? { index: resolve(ctxdir, 'index.html') } : undefined),
+      polyfillModulePreload: false,
+      modulePreload: {
+        polyfill: false,
       },
-      output: {
-        assetFileNames: '[name].[ext]',
-        entryFileNames: '[name].js',
-        manualChunks: {},
+
+      rollupOptions: {
+        input: {
+          options: resolve(ctxdir, 'options.html'),
+          popup: resolve(ctxdir, 'popup.html'),
+          // background: resolve(ctxdir, 'background.html'),
+          ...(process.env.APP_ENV === 'dev' ? { index: resolve(ctxdir, 'index.html') } : undefined),
+        },
+        output: {
+          assetFileNames: '[name].[ext]',
+          entryFileNames: '[name].js',
+          manualChunks: {},
+        },
       },
     },
-  },
+  };
 });
+
+// export default defineConfig({ });
 
 function manifest() {
   const icons = {
@@ -134,4 +140,37 @@ function manifest() {
       this.emitFile(file);
     },
   };
+}
+
+async function gitHash() {
+  let out;
+  try {
+    out = await run('git', ['rev-parse', 'HEAD']);
+    return out.substring(0, 6);
+  } catch (e) {
+    return;
+  }
+}
+
+function run(cmd0, args0) {
+  const cmd = cmd0;
+  const args = args0;
+
+  return new Promise((resolve, reject) => {
+    const proc = spawn(cmd, args);
+
+    let out = Buffer.from('');
+
+    proc.stdout.on('data', (data) => {
+      out += data;
+    });
+    proc.on('exit', (code) => {
+      if (code !== 0) {
+        reject(code);
+      }
+      // eslint-disable-next-line no-console
+      console.log('output', out);
+      resolve(out.toString());
+    });
+  });
 }
