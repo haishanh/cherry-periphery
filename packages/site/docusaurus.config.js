@@ -64,8 +64,7 @@ const config = {
           { type: 'doc', docId: 'intro', position: 'left', label: 'Docs' },
           { to: '/save', label: 'How to Save', position: 'left' },
           {
-            href: 'https://github.com/facebook/docusaurus',
-            // label: "GitHub",
+            href: 'https://github.com/haishanh/cherry',
             position: 'right',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
