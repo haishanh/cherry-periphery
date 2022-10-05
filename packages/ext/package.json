@@ -1,6 +1,6 @@
 {
   "name": "cherry-ext",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
   "prettier": {
     "printWidth": 100,
