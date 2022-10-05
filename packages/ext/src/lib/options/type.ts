@@ -2,7 +2,7 @@ export type ServerItemConfig = {
   // a ~unique key to identifier an item in list
   key: string;
   apiBase: string;
-  pat?: string;
+  pat: string;
   user?: {
     username: string;
   };

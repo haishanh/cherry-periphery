@@ -18,8 +18,14 @@
   import { fade } from 'svelte/transition';
 
   import type { ServerItemConfig } from '$lib/options/type';
+  import { deleteBookmarkServerSide, saveBookmarkToServer } from '$lib/shared/backend.util';
   import { ext } from '$lib/shared/browser';
-  import { createLogger, retrieveInfoFromCurrentTab } from '$lib/shared/common.util';
+  import {
+    createLogger,
+    getServerConfig,
+    retrieveInfoFromCurrentTab,
+  } from '$lib/shared/common.util';
+  import { RequestError } from '$lib/shared/http.util';
 
   type ScreenType =
     | 'Init' // Init probable is not needed
@@ -39,55 +45,53 @@
 
   const logger = createLogger('popup');
 
-  function sendMessage(type: string, payload?: any) {
-    ext.runtime.sendMessage({ type, payload });
-  }
-
-  function addListener() {
-    ext.runtime.onMessage.addListener(async (message, __callback) => {
-      const type = message.type;
-      const payload = message.payload;
-      logger.info('<- type=%s payload=%s', type, payload);
-      if (type === 'init:reply') {
-        if (payload.error) {
-          switchScreen('ConfigRequired');
-        } else {
-          server = payload.data.server;
-          switchScreen('Picking');
-          // save bookmark
-          retrieveInfoFromCurrentTab().then(
-            (item) => {
-              sendMessage('save_bookmark', { item });
-            },
-            (error) => {
-              logger.info('%s', error);
-              errMsg = error?.message || 'Unknown Error';
-              switchScreen('PickFailed');
-            }
-          );
-        }
-      } else if (type === 'save_bookmark:reply') {
-        if (payload.error) {
-          // to optimize this
-          errMsg = JSON.stringify(payload.error);
-          switchScreen('PickFailed');
-        } else {
-          bookmark = payload.data;
-          switchScreen('AfterSave');
-        }
-      } else if (type === 'delete_bookmark:reply') {
-        if (payload.error) {
-          // ignore
-        } else if (payload.data) {
-          switchScreen('Dropped');
-        }
+  const onApiFailure = (err: RequestError) => {
+    // logger.info('error %o', err);
+    if (err instanceof RequestError) {
+      if (err.error) {
+        return { error: err };
+      } else {
+        return { error: err.result };
       }
-    });
+    } else {
+      return { error: err };
+    }
+  };
+
+  async function init() {
+    // TODO throw?
+    server = await getServerConfig();
+    if (!server) {
+      switchScreen('ConfigRequired');
+    } else {
+      switchScreen('Picking');
+
+      let item: Awaited<ReturnType<typeof retrieveInfoFromCurrentTab>>;
+      try {
+        item = await retrieveInfoFromCurrentTab();
+      } catch (error) {
+        logger.info('%s', error);
+        errMsg = error?.message || 'Unknown Error';
+        switchScreen('PickFailed');
+      }
+
+      let ret: Awaited<ReturnType<typeof saveBookmarkToServer>>;
+      try {
+        ret = await saveBookmarkToServer(server, item);
+      } catch (err) {
+        let ret = onApiFailure(err);
+        // to optimize this
+        errMsg = JSON.stringify(ret.error);
+        switchScreen('PickFailed');
+      }
+
+      bookmark = ret.data;
+      switchScreen('AfterSave');
+    }
   }
 
-  onMount(async () => {
-    addListener();
-    sendMessage('init');
+  onMount(() => {
+    init();
   });
 
   const sleep = (t: number) => new Promise((r) => setTimeout(r, t));
@@ -100,16 +104,6 @@
     screen = target;
   }
 
-  async function unused__saveBookmark(item: { title?: string; desc?: string; url: string }) {
-    // const server = await loadConfigOnce();
-    try {
-      sendMessage('save_bookmark', { server, item });
-    } catch (e) {
-      errMsg = e?.message || 'Unknown Error';
-      switchScreen('PickFailed');
-    }
-  }
-
   function handleClickEdit() {
     switchScreen('Editing');
   }
@@ -119,7 +113,15 @@
       logger.error('Attempt to delete a bookmark without saving it');
       return;
     }
-    sendMessage('delete_bookmark', { id: bookmark.id });
+
+    deleteBookmarkServerSide(server, bookmark.id).then(
+      (__ret) => {
+        switchScreen('Dropped');
+      },
+      (__err) => {
+        // ignore
+      }
+    );
   }
 
   function handleClickSettings() {

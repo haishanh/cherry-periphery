@@ -5,9 +5,7 @@
 !.npmignore
 !.editorconfig
 !.eslintignore
-!.eslintrc
-!.eslintrc.js
-!.eslintrc.yml
+!.eslintrc.cjs
 !.prettierignore
 !.flowconfig
 !.travis.yml

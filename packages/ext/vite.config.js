@@ -46,22 +46,13 @@ export default defineConfig({
       input: {
         options: resolve(ctxdir, 'options.html'),
         popup: resolve(ctxdir, 'popup.html'),
-        background: resolve(ctxdir, 'background.html'),
+        // background: resolve(ctxdir, 'background.html'),
         ...(process.env.APP_ENV === 'dev' ? { index: resolve(ctxdir, 'index.html') } : undefined),
       },
       output: {
         assetFileNames: '[name].[ext]',
         entryFileNames: '[name].js',
         manualChunks: {},
-        // manualChunks: (id) => {
-        //   if (id.endsWith('src/content.ts') || /\/lib\/cnt\//.test(id)) {
-        //     return 'content';
-        //   } else if (id.endsWith('background.ts')) {
-        //     return 'xxbackground';
-        //     // } else {
-        //     //   return "ui-chunk.js";
-        //   }
-        // },
       },
     },
   },
@@ -94,10 +85,11 @@ function manifest() {
     // action is mv3+
     action,
 
-    background: {
-      service_worker: 'background.js',
-      type: 'module',
-    },
+    // we don't need background anymore
+    // background: {
+    //   service_worker: 'background.js',
+    //   type: 'module',
+    // },
   };
   const mv2 = {
     ...base,
@@ -122,10 +114,12 @@ function manifest() {
       'https://*/*',
       'http://*/*',
     ],
-    background: {
-      page: 'background.html',
-      persistent: false,
-    },
+
+    // we don't need background anymore
+    // background: {
+    //   page: 'background.html',
+    //   persistent: false,
+    // },
   };
 
   return {
