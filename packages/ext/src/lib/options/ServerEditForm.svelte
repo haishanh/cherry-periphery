@@ -41,6 +41,22 @@
 
   let isLoading = false;
 
+  async function figureOutApiBase(provided: string, pat: string) {
+    let apiBase: string;
+    if (provided.endsWith('/')) {
+      apiBase = provided.substring(0, provided.length - 1);
+    }
+    try {
+      const res = await fetchUserFromServer({ pat, apiBase });
+      return { apiBase, user: res.data.user };
+    } catch (e) {
+      // ignore
+    }
+    apiBase = new URL(provided).origin;
+    const res = await fetchUserFromServer({ pat, apiBase });
+    return { apiBase, user: res.data.user };
+  }
+
   async function onSubmit() {
     const result = validate(rule, { apiBase: item.apiBase, pat: item.pat });
     if (result.error) {
@@ -51,18 +67,12 @@
 
     // @ts-ignore
     let apiBase = result.value.apiBase as string;
-
-    let u = new URL(apiBase);
-    // we don't support deploy Cherry under sub-path of a domain
-    // keep "origin" here only
-    apiBase = u.origin;
     const value = { ...result.value, apiBase, key: item.key } as ServerItemConfig;
     try {
       isLoading = true;
-      // we can do cross site request on "options" page
-      const res = await fetchUserFromServer(value);
-      // res.data.token res.data.user
-      value.user = res.data.user;
+      const x = await figureOutApiBase(apiBase, result.value.pat);
+      value.user = x.user;
+      value.apiBase = x.apiBase;
     } catch (e) {
       error = { apiBase: '', pat: 'Invalid token' };
       return;
