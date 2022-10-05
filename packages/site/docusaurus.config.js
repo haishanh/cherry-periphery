@@ -36,14 +36,10 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/haishanh/cherry-periphery/tree/main/packages/site/',
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/haishanh/cherry-periphery/tree/main/packages/site/',
         },
         theme: {
@@ -61,8 +57,8 @@ const config = {
         hideOnScroll: true,
         logo: { alt: 'Cherry Logo', src: 'img/logo.svg' },
         items: [
-          { type: 'doc', docId: 'intro', position: 'left', label: 'Docs' },
-          { to: '/save', label: 'How to Save', position: 'left' },
+          { type: 'doc', docId: 'intro', position: 'right', label: 'Docs' },
+          { to: '/save', label: 'How to Save', position: 'right' },
           {
             href: 'https://github.com/haishanh/cherry',
             position: 'right',

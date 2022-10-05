@@ -41,6 +41,11 @@
     "prettier": "2.7.1",
     "typescript": "^4.8.4"
   },
+  "pnpm": {
+    "updateConfig": {
+      "ignoreDependencies": ["@mdx-js/react"]
+    }
+  },
   "browserslist": {
     "production": [
       ">0.5%",
