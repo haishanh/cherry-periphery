@@ -19,7 +19,7 @@ docker run -d --name cherry -v cherry_data_v1:/data \
 
 By default the SQLite database file will be created under `/data`, you should map a Docker [volume](https://docs.docker.com/storage/volumes/)(or [bind mount](https://docs.docker.com/storage/bind-mounts/)) to `/data` like the command above. `-e ENABLE_REGISTRATION=1` will enable registration, you probably want to remove this or set it to `0` to disable registration if you already registered.
 
-In most of the cases you will want to expose Cherry with something like [Nginx](https://www.nginx.com/), [Caddy](https://caddyserver.com/), [Traefik](https://traefik.io/traefik/) or [Cloudflare tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/tunnel-guide/) for SSL etc.
+Cherry listens on port 8000 for HTTP traffic, in most of the cases you will want to expose Cherry with something like [Nginx](https://www.nginx.com/), [Caddy](https://caddyserver.com/), [Traefik](https://traefik.io/traefik/) or [Cloudflare tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/tunnel-guide/) for SSL etc.
 
 ## Environment Variables
 
