@@ -34,6 +34,7 @@ export default defineConfig(async () => {
       alias: { $lib: resolve(ctxdir, 'src/lib') },
     },
     build: {
+      outDir: mv === '2' ? 'dist-mv2' : 'dist-mv3',
       minify,
       target: 'esnext',
       assetsInlineLimit: 100000000,
@@ -168,8 +169,6 @@ function run(cmd0, args0) {
       if (code !== 0) {
         reject(code);
       }
-      // eslint-disable-next-line no-console
-      console.log('output', out);
       resolve(out.toString());
     });
   });
