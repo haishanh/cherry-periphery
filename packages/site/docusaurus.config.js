@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Cherry',
-  tagline: 'A open source self-hostable bookmark service',
+  tagline: 'An open source self-hostable bookmark service',
   url: 'https://cherry.haishan.me',
   baseUrl: '/',
   onBrokenLinks: 'throw',
