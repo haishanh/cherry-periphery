@@ -1,16 +1,26 @@
 ## Development
 
-The UI components come from the main Cherry repo and placed in `pacakges/app`(relative to the project root) as git submodule. So you will need to clone or update the submodule and build the UI components before work this extension. YOu can use below command:
+The UI components come from the main Cherry repo and placed in `pacakges/app`(relative to the project root) as git submodule. So you will need to clone or update the submodule and build the UI components before work this extension. You can use these commands:
 
 ```bash
-# run this from the project root
-pnpm cherry
+# run these commands from the **project root**
+
+# init and update git submodule
+git submodule init
+git submodule update
+
+# install deps, you will need to re-run this each time after update the submodule
+pnpm i
+
+# build cherry UI components
+pnpm --filter cherry sync
+pnpm --filter cherry package
 ```
 
-Install dependencies:
+Install dependencies
 
 ```bash
-# run this in pacakges/ext
+# install deps, this time run this in **pacakges/ext**
 pnpm i
 ```
 
