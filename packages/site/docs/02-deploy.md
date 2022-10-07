@@ -25,7 +25,7 @@ Cherry listens on port 8000 for HTTP traffic, in most of the cases you will want
 
 **`JWT_SECRET`** (required)
 
-This string will be used to sign user's PAT (Personal Access Token). PAT is in the format of a JWT (JSON Web Token), it's used to verify and identity an Cherry user. You should keep your `JWT_SECRET` a secret to prevent others from forging tokens.
+This string will be used to sign user's PAT (Personal Access Token). PAT is in the format of a JWT (JSON Web Token), it's used to verify and identify an Cherry user. You should keep your `JWT_SECRET` a secret to prevent others from forging tokens.
 
 **`ENABLE_REGISTRATION`**
 
