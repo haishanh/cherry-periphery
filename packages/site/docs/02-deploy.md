@@ -33,9 +33,9 @@ This is printed by [SvelteKit](https://kit.svelte.dev/), a framework/library tha
 
 :::caution note on cookie
 
-Cherry uses [`Secure` cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#restrict_access_to_cookies) which only works with HTTPS. It works with "localhost" in **some** browsers too, so you should try use "localhost:8000" instead of "127.0.0.1:8000" or "0.0.0.0:8000" when running locally, or you will need to setup the reverse proxy and SSL for it.
+Cherry uses [`Secure` cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#restrict_access_to_cookies) which only works with HTTPS. It works with "localhost" in **some** browsers too, so you should try use "localhost:8000" instead of "127.0.0.1:8000" or "0.0.0.0:8000" when running locally.
 
-Sorry for the inconvenience at the moment, an environment variable flag may introduced in a future release to turn off Secure cookie.
+If that doesn't work, try set the environment variable `USE_INSECURE_COOKIE` to `1`. You shouldn't set this flag after you've setup reverse proxy and got HTTPS working.
 
 :::
 
@@ -54,6 +54,10 @@ This value determins whether registration is enabled from outside (of your Cherr
 Without setting `ENABLE_PUBLIC_REGISTRATION` to `1` you can still register an user via the internal admin API inside the Docker container.
 
 :::
+
+**`USE_INSECURE_COOKIE`**
+
+By default Cherry uses [`Secure` cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#restrict_access_to_cookies) which only works with HTTPS. But if you want to try run Cherry on your localhost you may set this environment variable to `1` to temporarily disable secure cookie, or you may not able to sign in.
 
 **`GOOGLE_OAUTH_CLIENT_ID`**, **`GOOGLE_OAUTH_CLIENT_SECRET`**, **`GOOGLE_OAUTH_REDIRECT_URI`**
 
