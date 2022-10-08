@@ -21,6 +21,16 @@ By default the SQLite database file will be created under `/data`, you should ma
 
 Cherry listens on port 8000 for HTTP traffic, in most of the cases you will want to expose Cherry with something like [Nginx](https://www.nginx.com/), [Caddy](https://caddyserver.com/), [Traefik](https://traefik.io/traefik/) or [Cloudflare tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/tunnel-guide/) for SSL etc.
 
+:::info
+
+You may see this message in the docker logs
+
+> Listening on 0.0.0.0:5173
+
+This is printed by [SvelteKit](https://kit.svelte.dev/), a framework/library that powers Cherry. You should treat this port as a internal thing, don't use or expose this port outside of the container.
+
+:::
+
 :::caution note on cookie
 
 Cherry uses [`Secure` cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#restrict_access_to_cookies) which only works with HTTPS. It works with "localhost" in **some** browsers too, so you should try use "localhost:8000" instead of "127.0.0.1:8000" or "0.0.0.0:8000" when running locally, or you will need to setup the reverse proxy and SSL for it.
