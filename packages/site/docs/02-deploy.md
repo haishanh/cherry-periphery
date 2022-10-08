@@ -57,7 +57,9 @@ Without setting `ENABLE_PUBLIC_REGISTRATION` to `1` you can still register an us
 
 **`GOOGLE_OAUTH_CLIENT_ID`**, **`GOOGLE_OAUTH_CLIENT_SECRET`**, **`GOOGLE_OAUTH_REDIRECT_URI`**
 
-These are required only if you want to enable "Sign in with Google". You can find your client ID and client secret after created the Google OAuth2 client. `GOOGLE_OAUTH_REDIRECT_URI` should be `{YOUR_CHERRY_BASE_URL}/api/auth/callback/google`, you will need this when creating the Goolge OAuth2 client too.
+These are required only if you want to enable "Sign in with Google". You can find your client ID and client secret after created the Google OAuth2 client. `GOOGLE_OAUTH_REDIRECT_URI` should be `{YOUR_CHERRY_BASE_URL}/api/auth/callback/google`, you will need to config it as one of the "Authorized redirect URIs" in your Goolge OAuth2 client.
+
+Since you can have many "Authorized redirect URIs" in one client, you can acutally reuse this client for different applications(Of course this is a bad practice for serious stuff though). Note, it may take some time (5 minutes according to Google) for your "Authorized redirect URIs" change to take effect. 
 
 **`DATABASE_PATH`**
 
