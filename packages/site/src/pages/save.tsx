@@ -16,6 +16,7 @@ export default function Save() {
       <main className={s0.main}>
         <h2>Browser Extensions</h2>
         <div className={s0.ext}>
+          <ExtensionScreenshot />
           <div className={s0.extLinkGroup}>
             <a
               href="https://chrome.google.com/webstore/detail/cherry-chrome-extension/klpbmdnmnbcabnaammeinopljnmdnili"
@@ -32,8 +33,10 @@ export default function Save() {
               <span>Firefox</span>
             </a>
           </div>
-          <ExtensionScreenshot />
         </div>
+        <h2>Browser Bookmarklet</h2>
+        <p>You can find the bookmarklet on your Settings / Account page. Drag the bookmarklet to your browser's bookmarks bar. When browing a web page, simply click the bookmarklet to save it to Cherry.</p>
+        <p>You should still use the browser extension whenever possible. A bunch of websites, like GitHub, have Content Security Policy applied that can prevent you from using the bookmarklet.</p>
       </main>
     </Layout>
   );
