@@ -59,6 +59,10 @@ Without setting `ENABLE_PUBLIC_REGISTRATION` to `1` you can still register an us
 
 By default Cherry uses [`Secure` cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#restrict_access_to_cookies) which only works with HTTPS. But if you want to try run Cherry on your localhost you may set this environment variable to `1` to temporarily disable secure cookie, or you may not able to sign in.
 
+**`ENABLE_HTTP_REMOTE_USER`**, **`HTTP_REMOTE_USER_HEADER_NAME`**
+
+Set `ENABLE_HTTP_REMOTE_USER` to `1` to enable authentication via the HTTP header "Remote-User"(can be changed use `HTTP_REMOTE_USER_HEADER_NAME`). This should **only** be enabled if you have an authentication gateway (like [Authelia](https://github.com/authelia/authelia) or [Authentik](https://github.com/goauthentik/authentik)) stands in front of Cherry that authenticates user. The value of the "Remote-User" header will be treated as `username` of a Cherry user. If this user doesn't exits, Cherry will create it automatically. In other places, Cherry may enforce you to use email as username, but it's not enforced in this case.
+
 **`GOOGLE_OAUTH_CLIENT_ID`**, **`GOOGLE_OAUTH_CLIENT_SECRET`**, **`GOOGLE_OAUTH_REDIRECT_URI`**
 
 These are required only if you want to enable "Sign in with Google". You can find your client ID and client secret after created the Google OAuth2 client. `GOOGLE_OAUTH_REDIRECT_URI` should be `{YOUR_CHERRY_BASE_URL}/api/auth/callback/google`, you will need to config it as one of the "Authorized redirect URIs" in your Goolge OAuth2 client.
