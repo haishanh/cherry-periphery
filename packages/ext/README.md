@@ -22,6 +22,9 @@ Install dependencies
 ```bash
 # install deps, this time run this in **pacakges/ext**
 pnpm i
+
+# pull icon images - I just don't like putting images like these icons into a source repo
+node scripts/pull-icons.mjs
 ```
 
 Firefox
