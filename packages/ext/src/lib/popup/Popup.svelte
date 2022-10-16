@@ -19,7 +19,7 @@
 
   import type { ServerItemConfig } from '$lib/options/type';
   import { deleteBookmarkServerSide, saveBookmarkToServer } from '$lib/shared/backend.util';
-  import { ext } from '$lib/shared/browser';
+  import { ext, isManifestV3 } from '$lib/shared/browser';
   import {
     createLogger,
     getServerConfig,
@@ -44,6 +44,9 @@
   let server: ServerItemConfig;
 
   const logger = createLogger('popup');
+  const print = (x: any) => {
+    console.log(x);
+  };
 
   const onApiFailure = (err: RequestError) => {
     // logger.info('error %o', err);
@@ -87,6 +90,30 @@
 
       bookmark = ret.data;
       switchScreen('AfterSave');
+      updateIcon(true).catch(print);
+    }
+  }
+
+  async function updateIcon(picked: boolean) {
+    const [tab] = await ext.tabs.query({ active: true, currentWindow: true });
+    const pickedIconPath = {
+      16: '/images/cherry-16.png',
+      32: '/images/cherry-32.png',
+      48: '/images/cherry-48.png',
+      128: '/images/cherry-128.png',
+    };
+    const defaultIconPath = {
+      16: '/images/leaf-16.png',
+      32: '/images/leaf-32.png',
+      48: '/images/leaf-48.png',
+      128: '/images/leaf-128.png',
+    };
+    const path = picked ? pickedIconPath : defaultIconPath;
+    const tabId = tab.id;
+    if (isManifestV3) {
+      ext.action.setIcon({ path, tabId });
+    } else {
+      ext.browserAction.setIcon({ path, tabId });
     }
   }
 
@@ -117,6 +144,7 @@
     deleteBookmarkServerSide(server, bookmark.id).then(
       (__ret) => {
         switchScreen('Dropped');
+        updateIcon(false).catch(print);
       },
       (__err) => {
         // ignore

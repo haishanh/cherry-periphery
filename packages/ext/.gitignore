@@ -23,7 +23,10 @@ dist-mv2
 dist-mv3
 coverage/
 
+# run: node scripts/pull-icons.mjs
+# to pull these icons images
 images/cherry*.png
+images/leaf*.png
 
 *.zip
 web-ext-artifacts/

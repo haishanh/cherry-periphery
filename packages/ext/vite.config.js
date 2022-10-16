@@ -63,14 +63,12 @@ export default defineConfig(async () => {
   };
 });
 
-// export default defineConfig({ });
-
 function manifest() {
   const icons = {
-    16: '/images/cherry-16.png',
-    32: '/images/cherry-32.png',
-    48: '/images/cherry-48.png',
-    128: '/images/cherry-128.png',
+    16: '/images/leaf-16.png',
+    32: '/images/leaf-32.png',
+    48: '/images/leaf-48.png',
+    128: '/images/leaf-128.png',
   };
   const action = {
     default_popup: 'popup.html',
