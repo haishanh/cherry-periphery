@@ -76,6 +76,14 @@ function manifest() {
     default_popup: 'popup.html',
     default_icon: icons,
   };
+
+  const action_command = {
+    suggested_key: {
+      default: 'Ctrl+Shift+E',
+      mac: 'Command+Shift+E',
+    },
+  };
+
   const base = {
     name: 'Cherry Browser extension',
     description: 'Browser extension for Cherry the open source self-hostable bookmark service',
@@ -97,6 +105,10 @@ function manifest() {
     //   service_worker: 'background.js',
     //   type: 'module',
     // },
+
+    commands: {
+      _execute_action: action_command,
+    },
   };
   const mv2 = {
     ...base,
@@ -127,6 +139,10 @@ function manifest() {
     //   page: 'background.html',
     //   persistent: false,
     // },
+
+    commands: {
+      _execute_browser_action: action_command,
+    },
   };
 
   return {
