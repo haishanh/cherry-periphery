@@ -17,6 +17,8 @@ docker exec cherry cherry create-user <email> <password>
 
 The above command assumes your Cherry container is named `cherry`. The first "cherry" is the container name, the second one is the name of the CLI.
 
+You may put single quotes around your password like `'a&*!b01'` if your password contains special charaters that may interpreted by your shell.
+
 :::
 
 :::info note
