@@ -14,7 +14,7 @@ docker run -d --name cherry -v cherry_data_v1:/data \
   -p "8000:8000" \
   -e "JWT_SECRET=some-secret-string" \
   -e "ENABLE_PUBLIC_REGISTRATION=1" \
-  haishanh/cherry
+  ghcr.io/haishanh/cherry:main
 ```
 
 By default the SQLite database file will be created under `/data`, you should map a Docker [volume](https://docs.docker.com/storage/volumes/)(or [bind mount](https://docs.docker.com/storage/bind-mounts/)) to `/data` like the command above. `-e ENABLE_PUBLIC_REGISTRATION=1` will enable registration, you probably want to remove this or set it to `0` to disable registration if you already registered.
