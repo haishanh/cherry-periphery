@@ -69,6 +69,10 @@ These are required only if you want to enable "Sign in with Google". You can fin
 
 Since you can have many "Authorized redirect URIs" in one client, you can acutally reuse this client for different applications(Of course this is a bad practice for serious stuff though). Note, it may take some time (5 minutes according to Google) for your "Authorized redirect URIs" change to take effect. 
 
+**`DATA_DIR`**
+
+This specify the directory where files, like temporary export CSV files, will be saved. By default the value is `/data`.
+
 **`DATABASE_PATH`**
 
 This specify the location of the SQLite database file. By default the value is `/data/cherry.sqlite`.
