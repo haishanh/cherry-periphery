@@ -9,9 +9,9 @@
   "workspaces": [
     "packages/*"
   ],
+  "packageManager": "pnpm@10.15.0",
   "engines": {
-    "node": ">=22.15.1",
-    "pnpm": ">=10.15.0"
+    "node": ">=22.15.1"
   },
   "license": "UNLICENSED"
 }
