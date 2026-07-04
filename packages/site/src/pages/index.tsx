@@ -4,7 +4,7 @@ import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
+import HomepageFeatures from '../components/HomepageFeatures';
 
 import styles from './index.module.css';
 
@@ -65,7 +65,6 @@ function BigShot() {
         />
         <img
           data-img="dark"
-          loading="lazy"
           decoding="async"
           src="https://i1.haishan.me/file/pelican/00/PX9VBubL_9-zgvNIhwr8c-300.png"
           width="2970"
@@ -86,7 +85,6 @@ function BigShot() {
         />
         <img
           data-img="light"
-          loading="lazy"
           decoding="async"
           src="https://i1.haishan.me/file/pelican/00/Y1yuNq52OZvDC01GxkXHq-300.png"
           width="2970"
