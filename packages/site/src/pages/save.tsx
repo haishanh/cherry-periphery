@@ -9,6 +9,10 @@ import ChromeLogo from '@browser-logos/chrome/chrome.svg';
 // svgo is enabled in the svgr/webpack included in docusaurus
 import FirefoxLogoPng from '@browser-logos/firefox/firefox_128x128.png';
 
+const ChromeLogoIcon = ChromeLogo as React.ComponentType<{
+  width?: number;
+}>;
+
 export default function Save() {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -22,7 +26,7 @@ export default function Save() {
               href="https://chrome.google.com/webstore/detail/cherry-chrome-extension/klpbmdnmnbcabnaammeinopljnmdnili"
               className={cx('button button--secondary', s0.extLink)}
             >
-              <ChromeLogo width={36} />
+              <ChromeLogoIcon width={36} />
               <span>Chrome</span>
             </a>
             <a

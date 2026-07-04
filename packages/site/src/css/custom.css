@@ -23,7 +23,7 @@
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'][data-theme='dark'] {
+[data-theme='dark'] {
   --ifm-color-primary-dark: #21af90;
   --ifm-color-primary-darker: #1fa588;
   --ifm-color-primary-darkest: #1a8870;
@@ -56,32 +56,26 @@
     no-repeat;
 }
 
-.footer__bottom {
+.theme-layout-footer {
   text-align: right;
 }
 
-.footer__copyright {
-  font-size: 0.9em;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.footer__copyright a {
+.theme-layout-footer .haishan-credit {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   color: inherit;
+  font-size: 0.9em;
 }
 
-[data-theme='dark'] .footer__copyright .avatar-haishan {
+[data-theme='dark'] .theme-layout-footer .avatar-haishan {
   --bo: hsl(0deg 0% 30%);
 }
-[data-theme='light'] .footer__copyright .avatar-haishan {
+[data-theme='light'] .theme-layout-footer .avatar-haishan {
   --bo: hsl(0deg 0% 93%);
 }
 
-.footer__copyright .avatar-haishan {
+.theme-layout-footer .avatar-haishan {
   background-image: url(https://github.com/haishanh.png);
   width: 30px;
   height: 30px;
@@ -92,18 +86,17 @@
   border: 1px solid var(--bo);
 }
 
-
-.navbar {
+.theme-layout-navbar {
   background: none;
   box-shadow: none;
 }
 
-.docs-doc-page .navbar {
+.docs-doc-page .theme-layout-navbar {
   border-bottom: 1px solid var(--cherry-nav-bo);
   background: var(--ifm-background-color);
 }
 
-.docs-wrapper .navbar {
+.docs-wrapper .theme-layout-navbar {
   border-bottom: 1px solid var(--cherry-nav-bo);
 }
 

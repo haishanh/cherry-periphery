@@ -3,5 +3,7 @@
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
     "baseUrl": "."
-  }
+  },
+  "include": ["src/**/*", "docusaurus.config.js", "sidebars.js"],
+  "exclude": ["build", ".docusaurus", "node_modules"]
 }

@@ -8,6 +8,16 @@ import HomepageFeatures from '@site/src/components/HomepageFeatures';
 
 import styles from './index.module.css';
 
+const LinkComponent = Link as React.ComponentType<{
+  children?: React.ReactNode;
+  className?: string;
+  to?: string;
+}>;
+
+const HeadComponent = Head as React.ComponentType<{
+  children?: React.ReactNode;
+}>;
+
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -16,9 +26,9 @@ function HomepageHeader() {
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
-          <Link className={cx('button button--secondary button--lg', styles.cta)} to="/docs/intro">
+          <LinkComponent className={cx('button button--secondary button--lg', styles.cta)} to="/docs/intro">
             Get Started
-          </Link>
+          </LinkComponent>
         </div>
         <BigShot />
       </div>
@@ -91,12 +101,12 @@ function BigShot() {
 function OpenGraphImage() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Head>
+    <HeadComponent>
       <meta name="twitter:image:src" content="https://i1.haishan.me/file/pelican/00/RAyOr08o-sScNJGqk9lQT-1200.png" />
       <meta property="og:image" content="https://i1.haishan.me/file/pelican/00/RAyOr08o-sScNJGqk9lQT-1200.png" />
       <meta property="og:image:alt" content={siteConfig.tagline} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="600" />
-    </Head>
+    </HeadComponent>
   );
 }

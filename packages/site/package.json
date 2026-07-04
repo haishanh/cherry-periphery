@@ -42,6 +42,9 @@
     "typescript": "^5.1.0"
   },
   "pnpm": {
+    "overrides": {
+      "@types/react": "^18.3.31"
+    },
     "updateConfig": {
       "ignoreDependencies": ["@mdx-js/react"]
     }

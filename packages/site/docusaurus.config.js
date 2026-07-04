@@ -12,6 +12,10 @@ const config = {
   url: 'https://cherry.haishan.me',
   baseUrl: '/',
   onBrokenLinks: 'throw',
+  storage: {
+    type: 'localStorage',
+    namespace: true,
+  },
   markdown: {
     hooks: {
       onBrokenMarkdownLinks: 'warn',
@@ -43,10 +47,7 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/haishanh/cherry-periphery/tree/main/packages/site/',
         },
-        blog: {
-          showReadingTime: true,
-          editUrl: 'https://github.com/haishanh/cherry-periphery/tree/main/packages/site/',
-        },
+        blog: false,
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -97,7 +98,7 @@ const config = {
           },
         ],
         copyright:
-          'Crafted by <a href="https://github.com/haishanh"><figure class="avatar-haishan"></figure><span>Haishan</span></a> in Shanghai',
+          'Crafted by <a class="haishan-credit" href="https://github.com/haishanh"><figure class="avatar-haishan"></figure><span>Haishan</span></a> in Shanghai',
       },
       prism: {
         theme: lightCodeTheme,
