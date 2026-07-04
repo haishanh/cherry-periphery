@@ -55,18 +55,18 @@ function BigShot() {
       <picture>
         <source
           type="image/avif"
-          srcSet="https://i1.haishan.me/file/pelican/00/PX9VBubL_9-zgvNIhwr8c-300.avif 300w, https://i1.haishan.me/file/pelican/00/PX9VBubL_9-zgvNIhwr8c-2970.avif 2970w"
+          srcSet="/img/site/home-hero-dark-300.avif 300w, /img/site/home-hero-dark-2970.avif 2970w"
           sizes="(min-width: 30em) 50vw, 100vw"
         />
         <source
           type="image/png"
-          srcSet="https://i1.haishan.me/file/pelican/00/PX9VBubL_9-zgvNIhwr8c-300.png 300w, https://i1.haishan.me/file/pelican/00/PX9VBubL_9-zgvNIhwr8c-2970.png 2970w"
+          srcSet="/img/site/home-hero-dark-300.png 300w, /img/site/home-hero-dark-2970.png 2970w"
           sizes="(min-width: 30em) 50vw, 100vw"
         />
         <img
           data-img="dark"
           decoding="async"
-          src="https://i1.haishan.me/file/pelican/00/PX9VBubL_9-zgvNIhwr8c-300.png"
+          src="/img/site/home-hero-dark-300.png"
           width="2970"
           height="1744"
           style={{ height: 'auto' }}
@@ -75,18 +75,18 @@ function BigShot() {
       <picture>
         <source
           type="image/avif"
-          srcSet="https://i1.haishan.me/file/pelican/00/Y1yuNq52OZvDC01GxkXHq-300.avif 300w, https://i1.haishan.me/file/pelican/00/Y1yuNq52OZvDC01GxkXHq-2970.avif 2970w"
+          srcSet="/img/site/home-hero-light-300.avif 300w, /img/site/home-hero-light-2970.avif 2970w"
           sizes="(min-width: 30em) 50vw, 100vw"
         />
         <source
           type="image/png"
-          srcSet="https://i1.haishan.me/file/pelican/00/Y1yuNq52OZvDC01GxkXHq-300.png 300w, https://i1.haishan.me/file/pelican/00/Y1yuNq52OZvDC01GxkXHq-2970.png 2970w"
+          srcSet="/img/site/home-hero-light-300.png 300w, /img/site/home-hero-light-2970.png 2970w"
           sizes="(min-width: 30em) 50vw, 100vw"
         />
         <img
           data-img="light"
           decoding="async"
-          src="https://i1.haishan.me/file/pelican/00/Y1yuNq52OZvDC01GxkXHq-300.png"
+          src="/img/site/home-hero-light-300.png"
           width="2970"
           height="1744"
           style={{ height: 'auto' }}
@@ -100,8 +100,8 @@ function OpenGraphImage() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <HeadComponent>
-      <meta name="twitter:image:src" content="https://i1.haishan.me/file/pelican/00/RAyOr08o-sScNJGqk9lQT-1200.png" />
-      <meta property="og:image" content="https://i1.haishan.me/file/pelican/00/RAyOr08o-sScNJGqk9lQT-1200.png" />
+      <meta name="twitter:image:src" content="https://cherry.haishan.me/img/site/og-image-1200.png" />
+      <meta property="og:image" content="https://cherry.haishan.me/img/site/og-image-1200.png" />
       <meta property="og:image:alt" content={siteConfig.tagline} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="600" />

@@ -36,7 +36,7 @@ const config = {
       onBrokenMarkdownLinks: 'warn',
     },
   },
-  favicon: 'https://i1.haishan.me/file/pelican/00/ZwhXba4c5ladhwcKD76hw-100.png',
+  favicon: 'img/site/cherry-mark-100.png',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.

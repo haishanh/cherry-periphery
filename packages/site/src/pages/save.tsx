@@ -53,19 +53,19 @@ function ExtensionScreenshot(props: { width?: number }) {
       <picture>
         <source
           type="image/avif"
-          srcSet="https://i1.haishan.me/file/pelican/00/tX_GlPCLsJvFLNM5cThAM-300.avif 300w, https://i1.haishan.me/file/pelican/00/tX_GlPCLsJvFLNM5cThAM-1436.avif 1436w"
+          srcSet="/img/site/save-light-300.avif 300w, /img/site/save-light-1436.avif 1436w"
           sizes="(min-width: 30em) 50vw, 100vw"
         />
         <source
           type="image/png"
-          srcSet="https://i1.haishan.me/file/pelican/00/tX_GlPCLsJvFLNM5cThAM-300.png 300w, https://i1.haishan.me/file/pelican/00/tX_GlPCLsJvFLNM5cThAM-1436.png 1436w"
+          srcSet="/img/site/save-light-300.png 300w, /img/site/save-light-1436.png 1436w"
           sizes="(min-width: 30em) 50vw, 100vw"
         />
         <img
           loading="lazy"
           decoding="async"
           data-img="light"
-          src="https://i1.haishan.me/file/pelican/00/tX_GlPCLsJvFLNM5cThAM-300.png"
+          src="/img/site/save-light-300.png"
           width="1436"
           height="974"
           style={{ height: 'auto', width }}
@@ -75,19 +75,19 @@ function ExtensionScreenshot(props: { width?: number }) {
       <picture>
         <source
           type="image/avif"
-          srcSet="https://i1.haishan.me/file/pelican/00/nQeuBAoOi5G-bbB3DdGQ7-300.avif 300w, https://i1.haishan.me/file/pelican/00/nQeuBAoOi5G-bbB3DdGQ7-1436.avif 1436w"
+          srcSet="/img/site/save-dark-300.avif 300w, /img/site/save-dark-1436.avif 1436w"
           sizes="(min-width: 30em) 50vw, 100vw"
         />
         <source
           type="image/png"
-          srcSet="https://i1.haishan.me/file/pelican/00/nQeuBAoOi5G-bbB3DdGQ7-300.png 300w, https://i1.haishan.me/file/pelican/00/nQeuBAoOi5G-bbB3DdGQ7-1436.png 1436w"
+          srcSet="/img/site/save-dark-300.png 300w, /img/site/save-dark-1436.png 1436w"
           sizes="(min-width: 30em) 50vw, 100vw"
         />
         <img
           loading="lazy"
           decoding="async"
           data-img="dark"
-          src="https://i1.haishan.me/file/pelican/00/nQeuBAoOi5G-bbB3DdGQ7-300.png"
+          src="/img/site/save-dark-300.png"
           width="1436"
           height="974"
           style={{ height: 'auto', width }}
