@@ -39,6 +39,13 @@ If that doesn't work, try set the environment variable `USE_INSECURE_COOKIE` to 
 
 :::
 
+:::tip Tips
+
+In case you want to have some sample bookmarks to play with your new Cherry instance, you can grab [this zip file](/cherries.csv.zip) and unzip it. Then go to "Settings" on the top right corner, click "Import" on the left, select "CSV" in the tabs, and drag `cherries.csv` into the import area.
+
+:::
+
+
 ## Environment Variables
 
 **`JWT_SECRET`** (required)
