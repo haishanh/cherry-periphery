@@ -7,32 +7,12 @@
 }
 
 .container {
-  --bg: url(/img/site/cherry-mark-100.png);
-
-  /*  url x y / width no-repeat */
-  /* prettier-ignore */
-  background:
-    var(--bg) 19% 4% / 40px no-repeat,
-    var(--bg) 41% 14% / 40px no-repeat,
-    var(--bg) 70% 5% / 50px no-repeat,
-    var(--bg) 0% 50% / 40px no-repeat,
-    var(--bg) 99% 60% / 30px no-repeat,
-    var(--bg) 60% 40% / 50px no-repeat,
-    var(--bg) 80% 80% / 45px no-repeat;
+  position: relative;
 }
 
 @media screen and (max-width: 996px) {
   .container {
     padding: 0;
-    /* prettier-ignore */
-    background:
-      var(--bg) 10% 4% / 25px no-repeat,
-      var(--bg) 41% 14% / 25px no-repeat,
-      var(--bg) 70% 5% / 35px no-repeat,
-      var(--bg) 0% 50% / 25px no-repeat,
-      var(--bg) 99% 60% / 18px no-repeat,
-      var(--bg) 60% 40% / 35px no-repeat,
-      var(--bg) 80% 80% / 20px no-repeat;
   }
 }
 
@@ -44,8 +24,28 @@
   display: none;
 }
 
+.BigShot {
+  position: relative;
+  z-index: 1;
+}
+
 .BigShot img {
   max-width: 100%;
+}
+
+.leaves {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.leaf {
+  position: absolute;
+  display: block;
+  background: url(/img/site/cherry-mark-100.png) center / contain no-repeat;
+  opacity: 0.95;
+  will-change: transform;
 }
 
 .bg {
@@ -58,6 +58,13 @@
   .heroBanner {
     padding: 15px;
   }
+}
+
+.heroBanner :global(.hero__title),
+.heroBanner :global(.hero__subtitle),
+.buttons {
+  position: relative;
+  z-index: 1;
 }
 
 .buttons {
