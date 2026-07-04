@@ -16,6 +16,21 @@ const config = {
     type: 'localStorage',
     namespace: true,
   },
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {},
+      innerHTML: `(function () {
+  try {
+    var migrationKey = 'theme-migration-20260704';
+    if (!window.localStorage.getItem(migrationKey)) {
+      window.localStorage.removeItem('theme-489');
+      window.localStorage.setItem(migrationKey, '1');
+    }
+  } catch (e) {}
+})();`,
+    },
+  ],
   markdown: {
     hooks: {
       onBrokenMarkdownLinks: 'warn',
@@ -58,6 +73,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: 'light',
+        respectPrefersColorScheme: true,
+      },
       navbar: {
         title: 'Cherry',
         hideOnScroll: true,
