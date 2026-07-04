@@ -117,7 +117,7 @@ const config = {
           },
         ],
         copyright:
-          'Crafted by <a class="haishan-credit" href="https://github.com/haishanh"><figure class="avatar-haishan"></figure><span>Haishan</span></a> in Shanghai',
+          '<span class="haishan-creditline">Crafted by <a class="haishan-credit" href="https://github.com/haishanh"><figure class="avatar-haishan"></figure><span>Haishan</span></a> <span>in Shanghai</span></span>',
       },
       prism: {
         theme: lightCodeTheme,
