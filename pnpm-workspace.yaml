@@ -1,3 +1,11 @@
 packages:
   - 'packages/*'
   - 'staged/*'
+allowBuilds:
+  '@parcel/watcher': true
+  '@sveltejs/kit': true
+  better-sqlite3: true
+  core-js: true
+  core-js-pure: true
+  esbuild: true
+  svelte-preprocess: true
